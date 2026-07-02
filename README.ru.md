@@ -1,0 +1,59 @@
+![Header](header.png)
+
+<div align="center">
+
+# Plight
+
+**Контроллер светодиодной ленты WS2812B из 1060 светодиодов с веб-интерфейсом на ESP8266**
+
+[![License](https://img.shields.io/badge/license-MIT-2C2C2C?style=for-the-badge&labelColor=1E1E1E)](LICENSE)
+[![ESP8266](https://img.shields.io/badge/ESP8266-NodeMCU-2C2C2C?style=for-the-badge&logo=espressif&labelColor=1E1E1E)]()
+[![FastLED](https://img.shields.io/badge/FastLED-WS2812B-2C2C2C?style=for-the-badge&labelColor=1E1E1E)]()
+
+</div>
+
+Управляемая по WiFi светодиодная лента WS2812B из 1060 светодиодов. ESP8266 запускает асинхронный веб-сервер с выбором цвета, слайдером яркости и настраиваемым паттерном включения/выключения (каждые N светодиодов горят, каждые M темнят). Предназначено для крупных потолочных или комнатных инсталляций.
+
+## ■ Возможности
+
+- ❖ **1060 светодиодов** — управляет полной лентой WS2812B с одного пина данных (GPIO 2)
+- ❖ **Веб-выбор цвета** — нативный HTML `<input type="color">`, конвертируется в RGB на устройстве
+- ❖ **Слайдер яркости** — диапазон 0-255 через веб-интерфейс
+- ❖ **Управление паттерном** — задайте, сколько светодиодов остаются включёнными (`on`) и сколько гаснут (`tr`) для повторяющихся эффектов плотности
+- ❖ **Асинхронный веб-сервер** — ESPAsyncWebServer на порту 89, отправка формы GET
+- ❖ **Цвет по умолчанию Catppuccin** — поставляется с `#b4befe` (lavender) в качестве цвета по умолчанию
+
+## ■ Стек
+
+<div align="center">
+
+| Компонент | Технология |
+|-----------|------------|
+| МКУ | ESP8266 (NodeMCU) |
+| Светодиоды | WS2812B x1060 |
+| Фреймворк | Arduino |
+| Библиотека LED | FastLED |
+| Веб-сервер | ESPAsyncWebServer |
+| Интерфейс | HTML form with color picker |
+
+</div>
+
+## ■ Запуск
+
+```bash
+# Set `ssid` / `password` in Plight.ino to your WiFi network
+# Open Arduino IDE
+# Select board: NodeMCU 1.0
+# Upload Plight.ino
+```
+
+ESP8266 подключается к вашей WiFi как станция и выводит свой IP через serial (115200 baud). Откройте `http://<IP>:89/` в браузере для управления цветом, яркостью и паттерном светодиодов.
+
+## ■ Files
+
+- `Plight.ino` — основная прошивка (WiFi, управление светодиодами, маршруты веб-сервера)
+- `page.ino` — генератор HTML-страницы с выбором цвета и элементами управления
+
+## ■ License
+
+MIT © [pluttan](https://github.com/pluttan)
