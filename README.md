@@ -1,14 +1,9 @@
-![Header](header.png)
-
 <div align="center">
 
 # Plight
 
 **1060 WS2812B LED strip controller with web interface on ESP8266**
 
-[![License](https://img.shields.io/badge/license-MIT-2C2C2C?style=for-the-badge&labelColor=1E1E1E)](LICENSE)
-[![ESP8266](https://img.shields.io/badge/ESP8266-NodeMCU-2C2C2C?style=for-the-badge&logo=espressif&labelColor=1E1E1E)]()
-[![FastLED](https://img.shields.io/badge/FastLED-WS2812B-2C2C2C?style=for-the-badge&labelColor=1E1E1E)]()
 
 </div>
 
@@ -25,6 +20,8 @@ WiFi-controlled WS2812B LED strip with 1060 LEDs. The ESP8266 hosts an async web
 
 ## ■ Stack
 
+<div align="center">
+
 | Component | Technology |
 |-----------|------------|
 | MCU | ESP8266 (NodeMCU) |
@@ -33,6 +30,17 @@ WiFi-controlled WS2812B LED strip with 1060 LEDs. The ESP8266 hosts an async web
 | LED library | FastLED |
 | Web server | ESPAsyncWebServer |
 | Interface | HTML form with color picker |
+
+</div>
+
+## ■ How It Works
+
+```
+1. ESP8266 connects to the configured WiFi network and prints its IP over serial (115200 baud)
+2. ESPAsyncWebServer starts on port 89, serving an HTML page with color picker, brightness slider, and pattern fields
+3. User opens http://<IP>:89/ in a browser and submits the form via GET request
+4. The device parses color, brightness, and on/off pattern values, then FastLED drives all 1060 WS2812B LEDs on GPIO 2 accordingly
+```
 
 ## ■ Usage
 
