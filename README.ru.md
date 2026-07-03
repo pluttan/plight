@@ -1,14 +1,9 @@
-![Header](header.png)
-
 <div align="center">
 
 # Plight
 
 **Контроллер светодиодной ленты WS2812B из 1060 светодиодов с веб-интерфейсом на ESP8266**
 
-[![License](https://img.shields.io/badge/license-MIT-2C2C2C?style=for-the-badge&labelColor=1E1E1E)](LICENSE)
-[![ESP8266](https://img.shields.io/badge/ESP8266-NodeMCU-2C2C2C?style=for-the-badge&logo=espressif&labelColor=1E1E1E)]()
-[![FastLED](https://img.shields.io/badge/FastLED-WS2812B-2C2C2C?style=for-the-badge&labelColor=1E1E1E)]()
 
 </div>
 
@@ -29,7 +24,7 @@
 
 | Компонент | Технология |
 |-----------|------------|
-| МКУ | ESP8266 (NodeMCU) |
+| MCU | ESP8266 (NodeMCU) |
 | Светодиоды | WS2812B x1060 |
 | Фреймворк | Arduino |
 | Библиотека LED | FastLED |
@@ -38,7 +33,16 @@
 
 </div>
 
-## ■ Запуск
+## ■ Как это работает
+
+```
+1. ESP8266 подключается к настроенной WiFi-сети и выводит свой IP через serial (115200 baud)
+2. ESPAsyncWebServer запускается на порту 89 и раздаёт HTML-страницу с выбором цвета, слайдером яркости и полями паттерна
+3. Пользователь открывает http://<IP>:89/ в браузере и отправляет форму GET-запросом
+4. Устройство разбирает значения цвета, яркости и паттерна включения/выключения, затем FastLED управляет всеми 1060 светодиодами WS2812B на GPIO 2
+```
+
+## ■ Использование
 
 ```bash
 # Set `ssid` / `password` in Plight.ino to your WiFi network
@@ -49,11 +53,11 @@
 
 ESP8266 подключается к вашей WiFi как станция и выводит свой IP через serial (115200 baud). Откройте `http://<IP>:89/` в браузере для управления цветом, яркостью и паттерном светодиодов.
 
-## ■ Files
+## ■ Файлы
 
 - `Plight.ino` — основная прошивка (WiFi, управление светодиодами, маршруты веб-сервера)
 - `page.ino` — генератор HTML-страницы с выбором цвета и элементами управления
 
-## ■ License
+## ■ Лицензия
 
 MIT © [pluttan](https://github.com/pluttan)
